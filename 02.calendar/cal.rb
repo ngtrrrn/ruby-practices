@@ -25,9 +25,6 @@ else
     month = Date.today.month
 end
 
-p year
-p month
-
 # カレンダーの中身
 wday_of_day01 = Date.new(year, month, 1).wday
 cal_view = ""
@@ -64,3 +61,4 @@ end
 puts "      #{month}月 #{year}"
 puts "日 月 火 水 木 金 土"
 puts "#{cal_view}"
+puts "\n"
