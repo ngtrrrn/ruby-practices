@@ -35,8 +35,15 @@ end
 wday = wday_of_day01
 
 while day <= Date.new(year, month, -1).day do
+    # 今日の日付の場合は、文字色・背景色反転開始
+    cal_view += "\e[7m" if Date.new(year, month, day) == Date.today
+    
     cal_view += " " if day < 10
     cal_view += "#{day}"
+        
+    # 今日の日付の場合は、文字色・背景色反転終了
+    cal_view += "\e[0m" if Date.new(year, month, day) == Date.today
+
     day += 1
     wday += 1
     if wday != 7
