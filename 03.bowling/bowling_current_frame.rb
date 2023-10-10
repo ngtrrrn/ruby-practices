@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # 引数をとる
 score = ARGV[0]
 scores = score.split(',')

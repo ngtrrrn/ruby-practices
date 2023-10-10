@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require 'debug'
 
 # 引数をとる
