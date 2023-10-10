@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'debug'
 
 # 引数をとる
@@ -23,19 +25,34 @@ end
 
 # 10フレーム目は2投もしくは3投でカウント
 if ! frames[10].nil?
-    frames[9] << frames[10][0]
+    if frames[9] == [10, 0] #10フレーム目1投目がストライクの場合、次の投球を0本にせず、もう2投分カウントする
+        if frames[10] == [10, 0] # 10フレーム目2投目もストライクの場合、次の投球を0本にせず、もう1投分カウントする
+            frames[10][1] = frames[11][0]
+            frames.pop
+        end
+        frames[9].pop
+        frames[9] << frames[10][0]
+        frames[9] << frames[10][1]
+
+    else
+        frames[9] << frames[10][0]
+    end
     frames.pop
 end
 
 # 得点を合計する
 point = 0
 frames_array_num = 0
+
+# テスト表示用
+# pre_point = 0
+
 frames.each do |frame|
     point += frame.sum 
-    if frames_array_num <= 8 # 10フレーム目はスペア・ストライクボーナス無し
+    if frames_array_num <= 8 # 10フレーム目はスペア・ストライクボーナス無しのため除外
         if frame[0] == 10 # strike
             point += frames[frames_array_num + 1][0]
-            if frames[frames_array_num + 1][0] == 10
+            if frames[frames_array_num + 1][0] == 10 && frames_array_num != 8 #9フレーム目のストライクは10フレーム目1•2投目を参照するため除外
                 point += frames[frames_array_num + 2][0]
             else
                 point += frames[frames_array_num+1][1]
@@ -45,5 +62,12 @@ frames.each do |frame|
         end
     end
     frames_array_num += 1
+    # テスト表示用
+    # binding.break
+    # puts "#{frames_array_num}フレーム目"
+    # puts "#{frame}"
+    # puts "このフレームは#{point - pre_point}点"
+    # puts "合計は#{point}点"
+    # pre_point = point
   end
 puts point
