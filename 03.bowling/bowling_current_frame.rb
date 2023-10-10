@@ -30,5 +30,4 @@ frames.each do |frame|
       point += frame.sum
     end
   end
-  puts point
-  
+puts point
