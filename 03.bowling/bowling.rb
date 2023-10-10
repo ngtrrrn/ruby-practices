@@ -47,3 +47,4 @@ frames.each do |frame|
     frames_array_num += 1
   end
   puts point
+  

@@ -31,3 +31,4 @@ frames.each do |frame|
     end
   end
   puts point
+  
