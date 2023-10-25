@@ -26,13 +26,12 @@ wday_of_first_day = Date.new(year, month, 1).wday
 cal_view = ""
 day = 1
 
-wday_of_first_day.times do
-    cal_view += "   "
-end
+cal_view += "   " * wday_of_first_day
 
 wday = wday_of_first_day
 
-while day <= Date.new(year, month, -1).day do
+last_day = Date.new(year, month, -1).day
+(1..last_day).each do |day|
     cal_view += "\e[7m" if Date.new(year, month, day) == Date.today
     
     cal_view += " " if day < 10
