@@ -8,29 +8,29 @@ args = ARGV.getopts("y:m:")
 arg_y = args["y"]
 arg_m = args["m"]
 
-if ! arg_y.nil?
+if arg_y.nil?
+    year = Date.today.year
+else
     year = arg_y.to_i
     raise "year `#{arg_y}' not in range 1970..2100" if year < 1970 || year > 2100
-else
-    year = Date.today.year
 end
 
-if ! arg_m.nil?
+if arg_m.nil?
+    month = Date.today.month
+else
     month = arg_m.to_i
     raise "#{arg_m} is neither a month number (1..12) nor a name" if month < 1 || month > 12
-else
-    month = Date.today.month
 end
 
-wday_of_day01 = Date.new(year, month, 1).wday
+wday_of_first_day = Date.new(year, month, 1).wday
 cal_view = ""
 day = 1
 
-wday_of_day01.times do
+wday_of_first_day.times do
     cal_view += "   "
 end
 
-wday = wday_of_day01
+wday = wday_of_first_day
 
 while day <= Date.new(year, month, -1).day do
     cal_view += "\e[7m" if Date.new(year, month, day) == Date.today
