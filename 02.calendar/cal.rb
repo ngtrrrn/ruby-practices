@@ -39,7 +39,7 @@ last_day = Date.new(year, month, -1).day
     else
       cal_view += "#{day}"
     end
-    
+
     cal_view += "\e[0m" if Date.new(year, month, day) == Date.today
 
     day += 1
@@ -55,4 +55,4 @@ end
 puts "      #{month}月 #{year}"
 puts "日 月 火 水 木 金 土"
 puts "#{cal_view}"
-puts "\n"
+puts
