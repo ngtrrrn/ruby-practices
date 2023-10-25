@@ -10,14 +10,14 @@ arg_m = args["m"]
 
 if ! arg_y.nil?
     year = arg_y.to_i
-    raise ScriptError, "year `#{arg_y}' not in range 1970..2100" if year < 1970 || year > 2100
+    raise "year `#{arg_y}' not in range 1970..2100" if year < 1970 || year > 2100
 else
     year = Date.today.year
 end
 
 if ! arg_m.nil?
     month = arg_m.to_i
-    raise ScriptError, "#{arg_m} is neither a month number (1..12) nor a name" if month < 1 || month > 12
+    raise "#{arg_m} is neither a month number (1..12) nor a name" if month < 1 || month > 12
 else
     month = Date.today.month
 end
