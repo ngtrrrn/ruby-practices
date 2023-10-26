@@ -7,7 +7,7 @@ scores = score.split(',')
 
 shots = []
 scores.each do |s|
-  if s == 'X' # strike
+  if s == 'X'
     shots << 10
     shots << 0
   else
@@ -17,10 +17,9 @@ end
 
 frames = shots.each_slice(2).to_a
 
-# 10フレーム目は2投もしくは3投でカウント
 if ! frames[10].nil?
-  if frames[9] == [10, 0] # 10フレーム目1投目がストライクの場合、次の投球を0本にせず、もう2投分カウントする
-    if frames[10] == [10, 0] # 10フレーム目2投目もストライクの場合、次の投球を0本にせず、もう1投分カウントする
+  if frames[9] == [10, 0]
+    if frames[10] == [10, 0]
       frames[10][1] = frames[11][0]
       frames.pop
     end
@@ -40,14 +39,14 @@ frames_array_num = 0
 frames.each do |frame|
   point += frame.sum 
   if frames_array_num <= 8 # 10フレーム目はスペア・ストライクボーナス無しのため除外
-    if frame[0] == 10 # strike
+    if frame[0] == 10
       point += frames[frames_array_num + 1][0]
       if frames[frames_array_num + 1][0] == 10 && frames_array_num != 8 #9フレーム目のストライクは10フレーム目1•2投目を参照するため除外
         point += frames[frames_array_num + 2][0]
       else
         point += frames[frames_array_num+1][1]
       end
-    elsif frame.sum == 10 # spare
+    elsif frame.sum == 10
       point += frames[frames_array_num+1][0]
     end
   end
