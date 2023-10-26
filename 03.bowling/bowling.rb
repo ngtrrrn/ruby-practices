@@ -15,10 +15,7 @@ scores.each do |s|
   end
 end
 
-frames = []
-shots.each_slice(2) do |s|
-  frames << s
-end
+frames = shots.each_slice(2).to_a
 
 # 10フレーム目は2投もしくは3投でカウント
 if ! frames[10].nil?
