@@ -26,22 +26,20 @@ end
 frames[9] = frame_of_tenth
 
 point = 0
-frames_array_num = 0
 
-frames.each do |frame|
+frames.each_with_index do |frame, idx|
   point += frame.sum 
-  if frames_array_num <= 8 # 10フレーム目はスペア・ストライクボーナス無しのため除外
+  if idx <= 8 # 10フレーム目はスペア・ストライクボーナス無しのため除外
     if frame[0] == 10
-      point += frames[frames_array_num + 1][0]
-      if frames[frames_array_num + 1][0] == 10 && frames_array_num != 8 #9フレーム目のストライクは10フレーム目1•2投目を参照するため除外
-        point += frames[frames_array_num + 2][0]
+      point += frames[idx + 1][0]
+      if frames[idx + 1][0] == 10 && idx != 8 #9フレーム目のストライクは10フレーム目1•2投目を参照するため除外
+        point += frames[idx + 2][0]
       else
-        point += frames[frames_array_num + 1][1]
+        point += frames[idx + 1][1]
       end
     elsif frame.sum == 10
-      point += frames[frames_array_num + 1][0]
+      point += frames[idx + 1][0]
     end
   end
-  frames_array_num += 1  
 end
 puts point
