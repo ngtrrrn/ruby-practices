@@ -17,21 +17,13 @@ end
 
 frames = shots.each_slice(2).to_a
 
-if ! frames[10].nil?
-  if frames[9] == [10, 0]
-    if frames[10] == [10, 0]
-      frames[10][1] = frames[11][0]
-      frames.pop
-    end
-    frames[9].pop
-    frames[9] << frames[10][0]
-    frames[9] << frames[10][1]
-
-  else
-    frames[9] << frames[10][0]
-  end
-  frames.pop
+pins_of_tenth = frames.slice!(9..-1)
+frame_of_tenth = []
+pins_of_tenth.map do |pin|
+  pin = [10] if pin == [10, 0]
+  frame_of_tenth += pin
 end
+frames[9] = frame_of_tenth
 
 point = 0
 frames_array_num = 0
