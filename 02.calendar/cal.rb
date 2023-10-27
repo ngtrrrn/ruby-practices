@@ -25,8 +25,7 @@ else
 end
 
 first_day = Date.new(year, month, 1)
-cal_view = ""
-cal_view += "   " * first_day.wday
+cal_view = "   " * first_day.wday
 
 last_day = Date.new(year, month, -1)
 
