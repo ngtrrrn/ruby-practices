@@ -15,15 +15,17 @@ scores.each do |s|
   end
 end
 
-frames = shots.each_slice(2).to_a
+frames_tmp = shots.each_slice(2).to_a
 
-pins_of_tenth = frames.slice!(9..-1)
+pins_of_tenth = frames_tmp.slice(9..-1)
 frame_of_tenth = []
+
 pins_of_tenth.map do |pin|
   pin = [10] if pin == [10, 0]
   frame_of_tenth += pin
 end
-frames[9] = frame_of_tenth
+frames = frames_tmp.slice(0..8)
+frames.push(frame_of_tenth)
 
 point = 0
 
