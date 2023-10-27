@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'debug'
-
 score = ARGV[0]
 scores = score.split(',')
 
@@ -16,10 +14,8 @@ scores.each do |s|
 end
 
 frames_tmp = shots.each_slice(2).to_a
-
 pins_of_tenth = frames_tmp.slice(9..-1)
 frame_of_tenth = []
-
 pins_of_tenth.map do |pin|
   pin = [10] if pin == [10, 0]
   frame_of_tenth += pin
@@ -28,7 +24,6 @@ frames = frames_tmp.slice(0..8)
 frames.push(frame_of_tenth)
 
 point = 0
-
 frames.each_with_index do |frame, idx|
   point += frame.sum 
   break if idx == 9 # 10フレーム目はスペア・ストライクボーナス無しのため除外
