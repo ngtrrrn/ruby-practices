@@ -14,8 +14,8 @@ scores.each do |s|
 end
 
 tmp_frames = shots.each_slice(2).to_a
-pins_of_tenth = frames_tmp.slice(9..-1)
-frame_of_tenth = []
+last_pins = frames_tmp.slice(9..-1)
+last_frame = []
 pins_of_tenth.map do |pin|
   pin = [10] if pin == [10, 0]
   frame_of_tenth += pin
