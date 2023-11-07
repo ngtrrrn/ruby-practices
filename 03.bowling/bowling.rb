@@ -13,7 +13,7 @@ scores.each do |s|
   end
 end
 
-frames_tmp = shots.each_slice(2).to_a
+tmp_frames = shots.each_slice(2).to_a
 pins_of_tenth = frames_tmp.slice(9..-1)
 frame_of_tenth = []
 pins_of_tenth.map do |pin|
